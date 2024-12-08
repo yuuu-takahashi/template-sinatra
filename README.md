@@ -24,7 +24,7 @@ VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: R
 ### サーバーの起動
 
 ```bash
-ruby index.rb
+bundle exec ruby index.rb
 ```
 
 http://localhost:3000 で確認できます

@@ -12,6 +12,7 @@ services:
       DATABASE_HOST: db
       DATABASE_USER: root
       DATABASE_PASSWORD: password
+      DATABASE_NAME: template-sinatra_development
 
   db:
     image: mysql:8

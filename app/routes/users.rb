@@ -15,3 +15,15 @@ rescue Mysql2::Error => e
 ensure
   client&.close
 end
+
+get '/users/:id' do
+  client = database_client
+  user = User.find(client, params[:id])
+  content_type :json
+  user.to_h.to_json
+rescue Mysql2::Error => e
+  status 500
+  { error: e.message }.to_json
+ensure
+  client&.close
+end

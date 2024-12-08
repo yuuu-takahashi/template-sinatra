@@ -6,7 +6,7 @@ class User
   def initialize(attributes)
     @id = attributes['id']
     @username = attributes['username']
-    @username = attributes['email']
+    @email = attributes['email']
     @created_at = attributes['created_at']
     @updated_at = attributes['updated_at']
   end
@@ -14,5 +14,20 @@ class User
   def self.all(client)
     results = client.query('SELECT * FROM users')
     results.map { |row| new(row) }
+  end
+
+  def self.find(client, id)
+    results = client.query("SELECT * FROM users WHERE id = #{id}")
+    new(results.first)
+  end
+
+  def to_h
+    {
+      id: @id,
+      username: @username,
+      email: @email,
+      created_at: @created_at,
+      updated_at: @updated_at
+    }
   end
 end
