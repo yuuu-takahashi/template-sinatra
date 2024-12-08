@@ -2,20 +2,11 @@
 
 require 'sinatra'
 require 'sinatra/reloader' if development?
+require_relative 'db/setup' if ENV['RUN_SETUP'] == 'true'
+require_relative 'app/controllers/users_controller'
 
-require_relative 'config/database'
-require_relative 'db/schema'
-require_relative 'db/seeds'
+use UsersController
 
 get '/' do
   'Hello, world!'
 end
-
-require_relative 'app/routes/users'
-
-client = database_client
-
-# データベースのセットアップ
-setup_database(client)
-seed_data(client)
-client.close
