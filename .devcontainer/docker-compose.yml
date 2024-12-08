@@ -1,0 +1,14 @@
+services:
+  web:
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+    volumes:
+      - ..:/workspace
+      - node_modules_cache:/workspace/node_modules
+      - gem_cache:/workspace/vendor/bundle
+    command: sleep infinity
+
+volumes:
+  node_modules_cache:
+  gem_cache:
