@@ -1,0 +1,5 @@
+AllCops:
+  Exclude:
+    - 'Gemfile'
+  NewCops: enable
+  TargetRubyVersion: 3.1

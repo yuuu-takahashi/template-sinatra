@@ -1,6 +1,6 @@
-# template-ruby
+# template-sinatra
 
-このリポジトリはRubyのテンプレートプロジェクトです。
+このリポジトリはSinatraのテンプレートプロジェクトです。
 
 ## 開発環境のセットアップ
 
@@ -13,10 +13,18 @@
 ### セットアップ手順
 
 ```bash
-git clone git@github.com:yuuu-takahashi/template-ruby.git
-cd template-ruby
+git clone git@github.com:yuuu-takahashi/template-sinatra.git
+cd template-sinatra
 ```
 
 ### Dev Containerの起動
 
 VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
+
+### サーバーの起動
+
+```bash
+ruby index.rb
+```
+
+http://localhost:3000 で確認できます
