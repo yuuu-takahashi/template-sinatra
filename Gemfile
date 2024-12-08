@@ -4,6 +4,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rspec', '~> 3.12', require: false
   gem 'factory_bot', '~> 6.2', require: false
+  gem 'rake', '~> 13.0', require: false
 end
 
 group :development do

@@ -22,14 +22,19 @@ def use_database(client, database_name)
 end
 
 def create_users_table(client)
-  client.query(<<-SQL)
-    CREATE TABLE IF NOT EXISTS users (
-      id INT AUTO_INCREMENT PRIMARY KEY,
-      name VARCHAR(255) NOT NULL,
-      email VARCHAR(255) NOT NULL UNIQUE,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-    )
-  SQL
-  puts "Table 'users' created successfully!"
+  result = client.query("SHOW TABLES LIKE 'users'")
+  if result.count.zero?
+    client.query(<<-SQL)
+      CREATE TABLE IF NOT EXISTS users (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    SQL
+    puts "Table 'users' created successfully!"
+  else
+    puts "Table 'users' already exists."
+  end
 end
