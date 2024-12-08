@@ -13,7 +13,7 @@ end
 
 def insert_sample_data(client)
   client.query(<<-SQL)
-    INSERT INTO users (username, email)
+    INSERT INTO users (name, email)
     VALUES
       ('JohnDoe', 'johndoe@example.com'),
       ('JaneSmith', 'janesmith@example.com'),

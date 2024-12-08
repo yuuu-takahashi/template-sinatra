@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class User
-  attr_reader :id, :username, :email, :created_at, :updated_at
+  attr_reader :id, :name, :email, :created_at, :updated_at
 
   def initialize(attributes)
     @id = attributes['id']
-    @username = attributes['username']
+    @name = attributes['name']
     @email = attributes['email']
     @created_at = attributes['created_at']
     @updated_at = attributes['updated_at']
@@ -24,7 +24,7 @@ class User
   def to_h
     {
       id: @id,
-      username: @username,
+      name: @name,
       email: @email,
       created_at: @created_at,
       updated_at: @updated_at
