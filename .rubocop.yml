@@ -3,3 +3,6 @@ AllCops:
     - 'Gemfile'
   NewCops: enable
   TargetRubyVersion: 3.1
+
+Style/Documentation:
+  Enabled: false
