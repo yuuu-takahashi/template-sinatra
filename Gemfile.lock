@@ -3,6 +3,7 @@ GEM
   specs:
     ast (2.4.2)
     base64 (0.2.0)
+    diff-lcs (1.5.1)
     json (2.9.0)
     language_server-protocol (3.17.0.3)
     logger (1.6.2)
@@ -32,6 +33,19 @@ GEM
     rbs (3.7.0)
       logger
     regexp_parser (2.9.3)
+    rspec (3.13.0)
+      rspec-core (~> 3.13.0)
+      rspec-expectations (~> 3.13.0)
+      rspec-mocks (~> 3.13.0)
+    rspec-core (3.13.2)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.2)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-support (3.13.2)
     rubocop (1.69.1)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -77,6 +91,7 @@ DEPENDENCIES
   mysql2 (~> 0.5.6)
   puma (~> 6.5)
   rackup (~> 2.2)
+  rspec (~> 3.12)
   rubocop
   ruby-lsp
   sinatra (~> 4.1)
