@@ -7,12 +7,14 @@ services:
       - ..:/workspace
       - node_modules_cache:/workspace/node_modules
       - gem_cache:/workspace/vendor/bundle
-    command: sleep infinity
+    ports:
+      - '4567:4567'
     environment:
       DATABASE_HOST: db
       DATABASE_USER: root
       DATABASE_PASSWORD: password
       DATABASE_NAME: template-sinatra_development
+    command: ['bundle', 'exec', 'ruby', 'index.rb']
 
   db:
     image: mysql:8
