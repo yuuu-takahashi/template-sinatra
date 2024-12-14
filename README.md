@@ -27,4 +27,8 @@ VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: R
 bundle exec ruby index.rb
 ```
 
-http://localhost:3000 で確認できます
+<http://localhost:3000> で確認できます
+
+```bash
+bundle exec rake db:create
+```

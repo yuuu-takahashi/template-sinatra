@@ -3,6 +3,14 @@
 require 'mysql2'
 
 module DatabaseClient
+  def self.connect_without_database
+    Mysql2::Client.new(
+      host: ENV.fetch('DATABASE_HOST', 'localhost'),
+      username: ENV.fetch('DATABASE_USER', 'root'),
+      password: ENV.fetch('DATABASE_PASSWORD', '')
+    )
+  end
+
   def self.connect
     Mysql2::Client.new(
       host: ENV.fetch('DATABASE_HOST', 'localhost'),

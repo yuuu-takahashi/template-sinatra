@@ -9,7 +9,7 @@ require_relative 'db/seeds'
 namespace :db do
   desc 'データベースを作成します'
   task :create do
-    client = DatabaseClient.connect
+    client = DatabaseClient.connect_without_database
     create_database(client, 'template-sinatra_development')
     client.close
   end
@@ -33,6 +33,13 @@ namespace :db do
     client.close
   end
 
-  desc 'データベースをリセット（セットアップとシードを再実行）します'
-  task reset: %i[setup seed]
+  desc 'データベースを削除します'
+  task :drop do
+    client = DatabaseClient.connect
+    drop_database(client, 'template-sinatra_development')
+    client.close
+  end
+
+  desc 'データベースをリセット（削除、セットアップとシードを再実行）します'
+  task reset: %i[drop setup seed]
 end
