@@ -19,7 +19,7 @@
 | 言語・フレームワーク | バージョン |
 | -------------------- | ---------- |
 | Ruby                 | 3.1.x      |
-| Node.js              | 20.x.x    |
+| Node.js              | 20.x.x     |
 
 ## ディレクトリ構成
 
@@ -37,7 +37,6 @@
 │   └── services
 │       └── database_client.rb
 ├── db
-│   ├── schema.rb
 │   ├── seeds.rb
 │   └── setup.rb
 ├── index.rb
@@ -72,7 +71,7 @@
 
    VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
 
-3. データベース準備
+3. データベース準備（テストデータも作成）
 
    ```bash
    bundle exec rake db:setup
@@ -84,7 +83,7 @@
    bundle exec ruby index.rb
    ```
   
-  <http://localhost:4567> で確認できます
+  <http://localhost:4567> で確認できます。
 
 ## 開発作業ガイド
 

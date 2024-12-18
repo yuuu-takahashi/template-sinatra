@@ -7,30 +7,26 @@ require_relative 'db/schema'
 require_relative 'db/seeds'
 
 namespace :db do
-  desc 'データベースを作成します'
   task :create do
     client = DatabaseClient.connect_without_database
     create_database(client, 'template-sinatra_development')
     client.close
   end
 
-  desc 'ユーザーテーブルを作成します'
   task :create_users_table do
     client = DatabaseClient.connect
     create_users_table(client)
     client.close
   end
 
-  desc 'データベースをセットアップします（データベースとユーザーテーブル作成）'
-  task setup: %i[create create_users_table] do
-    puts 'データベースとユーザーテーブルをセットアップしました。'
-  end
-
-  desc 'シードデータを投入します'
   task :seed do
     client = DatabaseClient.connect
     seed_data(client)
     client.close
+  end
+
+  task setup: %i[create create_users_table seed] do
+    puts 'データベースとユーザーテーブルをセットアップしました。'
   end
 
   desc 'データベースを削除します'
@@ -41,5 +37,5 @@ namespace :db do
   end
 
   desc 'データベースをリセット（削除、セットアップとシードを再実行）します'
-  task reset: %i[drop setup seed]
+  task reset: %i[drop setup]
 end
