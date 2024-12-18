@@ -11,7 +11,7 @@ set :port, 4567
 
 ROUTES = {
   get: {
-    '/' => [UsersController, :index],
+    '/users' => [UsersController, :index],
     '/users/:id' => [UsersController, :show]
   }
 }.freeze
@@ -26,4 +26,8 @@ ROUTES.each do |http_method, paths|
       end
     end
   end
+end
+
+get '/' do
+  "Hello World #{params[:name]}".strip
 end
