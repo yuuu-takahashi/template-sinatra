@@ -2,9 +2,10 @@
 
 require 'rake'
 
-require_relative 'app/services/database_client'
-require_relative 'db/schema'
-require_relative 'db/seeds'
+require_relative 'config/setup'
+require_with_alias('@/app/services/database_client')
+require_with_alias('@/db/schema')
+require_with_alias('@/db/seeds')
 
 namespace :db do
   task :create do

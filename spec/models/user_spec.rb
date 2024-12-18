@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
-require_relative '../../app/models/user'
+require_relative '../../config/setup'
+require_with_alias('@/app/models/user')
 
 RSpec.describe 'Example' do
   include FactoryBot::Syntax::Methods

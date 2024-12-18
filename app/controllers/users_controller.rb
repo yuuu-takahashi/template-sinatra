@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
-require_relative '../models/user'
-require_relative '../services/database_client'
+require_relative '../../config/setup'
+require_with_alias('@/app/models/user')
+require_with_alias('@/app/services/database_client')
 
 class UsersController < Sinatra::Base
   before do
