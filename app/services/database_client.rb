@@ -2,6 +2,7 @@
 
 require 'mysql2'
 require 'yaml'
+require 'erb'
 
 module DatabaseClient
   def self.config
