@@ -9,6 +9,10 @@ require_with_alias('@/app/controllers/users_controller')
 set :bind, '0.0.0.0'
 set :port, 4567
 
+get '/' do
+  'TOP'
+end
+
 ROUTES = {
   get: {
     '/users' => [UsersController, :index],
@@ -26,8 +30,4 @@ ROUTES.each do |http_method, paths|
       end
     end
   end
-end
-
-get '/' do
-  "Hello World #{params[:name]}".strip
 end

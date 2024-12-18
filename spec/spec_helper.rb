@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
+ENV['APP_ENV'] = 'test'
+
 require 'factory_bot'
+require 'rack/test'
 
 FactoryBot.definition_file_paths = %w[./spec/factories]
 FactoryBot.find_definitions
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
+  config.include Rack::Test::Methods
 
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -17,4 +21,8 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+
+  def app
+    Sinatra::Application
+  end
 end
