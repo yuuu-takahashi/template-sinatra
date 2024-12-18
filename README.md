@@ -2,7 +2,25 @@
 
 このリポジトリはSinatraのテンプレートプロジェクトです。
 
-## 開発環境のセットアップ
+## 目次
+
+- [template-sinatra](#template-sinatra)
+  - [目次](#目次)
+  - [使用技術](#使用技術)
+  - [開発環境構築](#開発環境構築)
+    - [準備](#準備)
+    - [開発サーバーセットアップ](#開発サーバーセットアップ)
+  - [ディレクトリ構成](#ディレクトリ構成)
+  - [トラブルシューティング](#トラブルシューティング)
+
+## 使用技術
+
+| 言語・フレームワーク | バージョン |
+| -------------------- | ---------- |
+| Ruby                 | 3.1.x      |
+| Node.js              | 16.17.0    |
+
+## 開発環境構築
 
 ### 準備
 
@@ -10,25 +28,63 @@
 - [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)をインストール
 - [Docker](https://www.docker.com/ja-jp/)をインストール
 
-### セットアップ手順
+### 開発サーバーセットアップ
+
+1. リポジトリをclone
+
+   ```bash
+   git clone git@github.com:yuuu-takahashi/template-sinatra.git
+   cd template-sinatra
+   ```
+
+2. Dev Containerの起動
+
+   VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
+
+3. データベース準備
+
+   ```bash
+   bundle exec rake db:setup
+   ```
+
+4. 開発サーバーの起動
+
+   ```bash
+   bundle exec ruby index.rb
+   ```
+  
+  <http://localhost:4567> で確認できます
+
+## ディレクトリ構成
 
 ```bash
-git clone git@github.com:yuuu-takahashi/template-sinatra.git
-cd template-sinatra
+.
+├── Gemfile
+├── Gemfile.lock
+├── README.md
+├── Rakefile
+├── app
+│   ├── controllers
+│   │   └── users_controller.rb
+│   ├── models
+│   │   └── user.rb
+│   └── services
+│       └── database_client.rb
+├── db
+│   ├── schema.rb
+│   ├── seeds.rb
+│   └── setup.rb
+├── index.rb
+├── package.json
+├── spec
+│   ├── factories
+│   │   └── user.rb
+│   ├── models
+│   │   └── user_spec.rb
+│   └── spec_helper.rb
+└── yarn.lock
 ```
 
-### Dev Containerの起動
+## トラブルシューティング
 
-VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
-
-### サーバーの起動
-
-```bash
-bundle exec ruby index.rb
-```
-
-<http://localhost:3000> で確認できます
-
-```bash
-bundle exec rake db:create
-```
+TODO:
