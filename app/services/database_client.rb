@@ -22,8 +22,6 @@ module DatabaseClient
     )
   end
 
-  private_class_method :config
-
   def self.config
     @config ||= begin
       env = ENV.fetch('RACK_ENV', 'development')
@@ -33,4 +31,6 @@ module DatabaseClient
       db_config[env]
     end
   end
+
+  private_class_method :config
 end
