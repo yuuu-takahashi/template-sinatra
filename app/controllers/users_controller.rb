@@ -17,12 +17,12 @@ class UsersController < Sinatra::Base
     end
   end
 
-  # def self.show(params)
-  #   with_database_client do |client|
-  #     user = User.find(client, params[:id])
-  #     user.to_h.to_json
-  #   end
-  # end
+  def self.show(params)
+    with_database_client do |client|
+      user = User.find(client, params[:id])
+      user.to_h.to_json
+    end
+  end
 
   def self.with_database_client
     client = DatabaseClient.connect

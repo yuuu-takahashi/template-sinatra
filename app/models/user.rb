@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class User
-  attr_reader :id, :name, :email, :created_at, :updated_at
+  attr_accessor :id
+  attr_reader :name, :email, :created_at, :updated_at
 
   def initialize(attributes)
     @id = attributes['id']
