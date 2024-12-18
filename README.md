@@ -7,10 +7,11 @@
 - [template-sinatra](#template-sinatra)
   - [目次](#目次)
   - [使用技術](#使用技術)
+  - [ディレクトリ構成](#ディレクトリ構成)
   - [開発環境構築](#開発環境構築)
     - [準備](#準備)
     - [開発サーバーセットアップ](#開発サーバーセットアップ)
-  - [ディレクトリ構成](#ディレクトリ構成)
+  - [開発作業ガイド](#開発作業ガイド)
   - [トラブルシューティング](#トラブルシューティング)
 
 ## 使用技術
@@ -19,6 +20,36 @@
 | -------------------- | ---------- |
 | Ruby                 | 3.1.x      |
 | Node.js              | 20.x.x    |
+
+## ディレクトリ構成
+
+```bash
+.
+├── Gemfile
+├── Gemfile.lock
+├── README.md
+├── Rakefile
+├── app
+│   ├── controllers
+│   │   └── users_controller.rb
+│   ├── models
+│   │   └── user.rb
+│   └── services
+│       └── database_client.rb
+├── db
+│   ├── schema.rb
+│   ├── seeds.rb
+│   └── setup.rb
+├── index.rb
+├── package.json
+├── spec
+│   ├── factories
+│   │   └── user.rb
+│   ├── models
+│   │   └── user_spec.rb
+│   └── spec_helper.rb
+└── yarn.lock
+```
 
 ## 開発環境構築
 
@@ -55,34 +86,12 @@
   
   <http://localhost:4567> で確認できます
 
-## ディレクトリ構成
+## 開発作業ガイド
+
+- テスト
 
 ```bash
-.
-├── Gemfile
-├── Gemfile.lock
-├── README.md
-├── Rakefile
-├── app
-│   ├── controllers
-│   │   └── users_controller.rb
-│   ├── models
-│   │   └── user.rb
-│   └── services
-│       └── database_client.rb
-├── db
-│   ├── schema.rb
-│   ├── seeds.rb
-│   └── setup.rb
-├── index.rb
-├── package.json
-├── spec
-│   ├── factories
-│   │   └── user.rb
-│   ├── models
-│   │   └── user_spec.rb
-│   └── spec_helper.rb
-└── yarn.lock
+bundle exec rspec
 ```
 
 ## トラブルシューティング
