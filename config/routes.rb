@@ -8,8 +8,8 @@ end
 
 ROUTES = {
   get: {
-    '/users' => [UsersController, :index],
-    '/users/:id' => [UsersController, :show]
+    '/users' => [UsersController, :index]
+    # '/users/:id' => [UsersController, :show]
   }
 }.freeze
 

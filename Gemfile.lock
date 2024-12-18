@@ -23,6 +23,8 @@ GEM
     drb (2.2.1)
     factory_bot (6.5.0)
       activesupport (>= 5.0.0)
+    faker (3.5.1)
+      i18n (>= 1.8.11, < 2)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
     json (2.9.0)
@@ -117,6 +119,7 @@ PLATFORMS
 
 DEPENDENCIES
   factory_bot (~> 6.2)
+  faker
   mysql2 (~> 0.5.6)
   puma (~> 6.5)
   rack-test

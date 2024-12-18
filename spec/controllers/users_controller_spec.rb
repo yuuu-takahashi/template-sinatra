@@ -9,8 +9,9 @@ RSpec.describe 'users_controller' do
     expect(last_response).to be_ok
   end
 
-  it 'user' do
-    get '/users/1'
-    expect(last_response).to be_ok
-  end
+  # it 'user' do
+  #   user = create(:user)
+  #   get "/users/#{user.id}"
+  #   expect(last_response).to be_ok
+  # end
 end

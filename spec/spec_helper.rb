@@ -4,11 +4,25 @@ ENV['APP_ENV'] = 'test'
 
 require 'factory_bot'
 require 'rack/test'
+require 'rake'
+
+Rake.application.init
+Rake.application.load_rakefile
+
+Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |file| require file }
 
 FactoryBot.definition_file_paths = %w[./spec/factories]
 FactoryBot.find_definitions
 
 RSpec.configure do |config|
+  config.before(:suite) do
+    Rake::Task['db:setup'].invoke
+  end
+
+  config.after(:suite) do
+    Rake::Task['db:drop'].invoke
+  end
+
   config.include FactoryBot::Syntax::Methods
   config.include Rack::Test::Methods
 

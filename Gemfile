@@ -8,6 +8,10 @@ group :development, :test do
   gem 'rack-test'
 end
 
+group :test do
+  gem 'faker', require: false
+end
+
 group :development do
   gem 'ruby-lsp', require: false
   gem 'sinatra-contrib', require: false

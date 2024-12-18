@@ -13,18 +13,31 @@ module DatabaseClient
     )
   end
 
-  def self.connect
+  def self.connect(env = ENV.fetch('APP_ENV', 'development'))
     Mysql2::Client.new(
       host: config['host'],
       username: config['username'],
       password: config['password'],
-      database: config['database']
+      database: database_name(env)
     )
+  end
+
+  def self.database_name(env)
+    case env
+    when 'test'
+      # TODO:
+      'template-sinatra_test'
+    when 'production'
+      'template-sinatra_production'
+    else
+      'template-sinatra_development'
+    end
   end
 
   def self.config
     @config ||= begin
-      env = ENV.fetch('RACK_ENV', 'development')
+      env = ENV.fetch('APP_ENV', 'development')
+
       db_config_path = File.expand_path('../../config/database.yml', __dir__)
       erb = ERB.new(File.read(db_config_path))
       db_config = YAML.safe_load(erb.result, aliases: true)

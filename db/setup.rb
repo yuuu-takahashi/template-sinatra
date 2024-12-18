@@ -46,3 +46,13 @@ def create_users_seed_data(client)
     puts 'users data already exists. No data inserted.'
   end
 end
+
+def drop_database(client, database_name)
+  result = client.query("SHOW DATABASES LIKE '#{database_name}'")
+  if result.count.positive?
+    client.query("DROP DATABASE `#{database_name}`")
+    puts "Database '#{database_name}' dropped successfully!"
+  else
+    puts "Database '#{database_name}' does not exist."
+  end
+end

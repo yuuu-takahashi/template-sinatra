@@ -11,7 +11,7 @@ RSpec.describe 'Example' do
   end
 
   it 'can create a user with FactoryBot' do
-    user = build(:user)
+    user = create(:user, name: 'John Doe')
     expect(user.name).to eq('John Doe')
   end
 end

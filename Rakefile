@@ -9,7 +9,9 @@ require_with_alias('@/db/setup')
 namespace :db do
   task :create do
     client = DatabaseClient.connect_without_database
-    create_database(client, ENV.fetch('DATABASE_NAME'))
+    env = ENV['APP_ENV'] || 'development'
+    database_name = DatabaseClient.database_name(env)
+    create_database(client, database_name)
     client.close
   end
 
@@ -25,13 +27,15 @@ namespace :db do
     client.close
   end
 
-  task setup: %i[create create_users_table create_users_seed_data] do
+  task setup: %i[create create_users_table] do
     puts 'Database setup completed!'
   end
 
   task :drop do
     client = DatabaseClient.connect
-    drop_database(client, 'template-sinatra_development')
+    env = ENV['APP_ENV'] || 'development'
+    database_name = DatabaseClient.database_name(env)
+    drop_database(client, database_name)
     client.close
   end
 
