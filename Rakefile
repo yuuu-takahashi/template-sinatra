@@ -3,7 +3,7 @@
 require 'rake'
 
 require_relative 'config/setup'
-require_with_alias('@/app/services/database_client')
+require_with_alias('@/config/initializers/database_client')
 require_with_alias('@/db/setup')
 
 namespace :db do
