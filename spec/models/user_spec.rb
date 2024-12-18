@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
 require_relative '../../config/setup'
 require_with_alias('@/app/models/user')
 

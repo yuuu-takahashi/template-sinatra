@@ -9,8 +9,21 @@ require_with_alias('@/app/controllers/users_controller')
 set :bind, '0.0.0.0'
 set :port, 4567
 
-use UsersController
+ROUTES = {
+  get: {
+    '/' => [UsersController, :index],
+    '/users/:id' => [UsersController, :show]
+  }
+}.freeze
 
-get '/' do
-  'Hello, world!'
+ROUTES.each do |http_method, paths|
+  paths.each do |path, (controller, action)|
+    send(http_method, path) do
+      if params.empty?
+        controller.send(action)
+      else
+        controller.send(action, params)
+      end
+    end
+  end
 end

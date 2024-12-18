@@ -10,23 +10,21 @@ class UsersController < Sinatra::Base
     content_type :json
   end
 
-  get '/users' do
+  def self.index
     with_database_client do |client|
       users = User.all(client)
       users.map(&:to_h).to_json
     end
   end
 
-  get '/users/:id' do
+  def self.show(params)
     with_database_client do |client|
       user = User.find(client, params[:id])
       user.to_h.to_json
     end
   end
 
-  private
-
-  def with_database_client
+  def self.with_database_client
     client = DatabaseClient.connect
     yield(client)
   rescue Mysql2::Error => e
