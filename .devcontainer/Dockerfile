@@ -19,7 +19,3 @@ COPY /Gemfile /Gemfile.lock ./
 RUN bundle install --path 'vendor/bundle'
 
 COPY . .
-
-EXPOSE 4567
-
-CMD ["bundle", "exec", "ruby", "index.rb"]

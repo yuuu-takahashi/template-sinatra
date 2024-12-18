@@ -16,7 +16,7 @@ services:
       DATABASE_NAME: template-sinatra_development
     tty: true
     stdin_open: true
-    command: ['bundle', 'exec', 'ruby', 'index.rb']
+    command: ['sleep', 'infinity']
 
   db:
     image: mysql:8
