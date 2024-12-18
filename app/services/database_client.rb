@@ -9,8 +9,7 @@ module DatabaseClient
     Mysql2::Client.new(
       host: config['host'],
       username: config['username'],
-      password: config['password'],
-      port: config['port']
+      password: config['password']
     )
   end
 
