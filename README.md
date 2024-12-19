@@ -71,10 +71,11 @@
 
    VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
 
-3. データベース準備（テストデータも作成）
+3. データベース準備
 
    ```bash
    bundle exec rake db:setup
+   bundle exec rake db:seed
    ```
 
 4. 開発サーバーの起動
