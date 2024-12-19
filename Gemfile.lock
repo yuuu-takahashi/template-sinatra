@@ -116,6 +116,7 @@ GEM
 
 PLATFORMS
   aarch64-linux
+  x86_64-linux
 
 DEPENDENCIES
   factory_bot (~> 6.2)
