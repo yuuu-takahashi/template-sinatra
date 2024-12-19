@@ -36,7 +36,7 @@ namespace :db do
   end
 
   desc 'Seed the users data'
-  task :seed_data do
+  task :seed do
     client = DatabaseClient.connect
     create_users_seed_data(client)
     client.close
@@ -44,7 +44,7 @@ namespace :db do
   end
 
   desc 'Setup the database'
-  task setup: %i[create create_table seed_data] do
+  task setup: %i[create create_table] do
     puts 'Database setup completed!'
   end
 
