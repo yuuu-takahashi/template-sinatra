@@ -9,7 +9,7 @@ services:
       - gem_cache:/workspace/vendor/bundle
     ports:
       - '4567:4567'
-    env_file: .env
+    env_file: ../.env
     tty: true
     stdin_open: true
     command: ['sleep', 'infinity']

@@ -1,7 +1,6 @@
-users:
-  - name: JohnDoe
-    email: johndoe@example.com
-  - name: JaneSmith
-    email: janesmith@example.com
-  - name: TestUser
-    email: testuser@example.com
+- name: JohnDoe
+  email: johndoe@example.com
+- name: JaneSmith
+  email: janesmith@example.com
+- name: TestUser
+  email: testuser@example.com

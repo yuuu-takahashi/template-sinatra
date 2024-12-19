@@ -40,7 +40,7 @@ def create_users_seed_data(client)
   user_count = result.first['count']
 
   if user_count.zero?
-    users = YAML.load_file('users.yml')
+    users = YAML.load_file(File.join(File.dirname(__FILE__), 'seeds/users.yml'))
     insert_users(client, users)
     puts 'users data inserted successfully!'
   else
@@ -50,9 +50,9 @@ end
 
 def insert_users(client, users)
   users.each do |user|
+    puts "Inserting user: #{user.inspect}" #
     client.query("INSERT INTO users (name, email) VALUES ('#{user['name']}', '#{user['email']}')")
   end
-  insert_users_data(client)
 end
 
 def drop_database(client)

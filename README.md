@@ -72,14 +72,20 @@ tree -I 'vendor|node_modules'
 
    VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
 
-3. データベース準備
+3. 環境変数の設定
+
+   ```bash
+   cp example.env .env
+   ```
+
+4. データベース準備
 
    ```bash
    bundle exec rake db:setup
    bundle exec rake db:seed
    ```
 
-4. 開発サーバーの起動
+5. 開発サーバーの起動
 
    ```bash
    bundle exec ruby index.rb
@@ -93,6 +99,12 @@ tree -I 'vendor|node_modules'
 
 ```bash
 bundle exec rspec
+```
+
+- コードチェック
+
+```bash
+bundle exec rubocop -A
 ```
 
 ## トラブルシューティング

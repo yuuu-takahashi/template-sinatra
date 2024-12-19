@@ -4,13 +4,20 @@ require 'dotenv'
 
 env_file = case ENV['APP_ENV']
            when 'production'
-             '.env.production'
+             File.expand_path('../.env.production', __dir__)
            when 'test'
-             '.env.test'
+             File.expand_path('../.env.test', __dir__)
            else
-             '.env'
+             File.expand_path('../.env', __dir__)
            end
 
-Dotenv.load(env_file)
+puts "Using env file: #{env_file}"
 
-puts "Loaded environment: #{ENV['APP_ENV']}"
+if File.exist?(env_file)
+  puts 'Env file found'
+else
+  puts 'Env file not found!'
+end
+
+loaded_vars = Dotenv.overload(env_file)
+puts "Loaded variables: #{loaded_vars.inspect}"
