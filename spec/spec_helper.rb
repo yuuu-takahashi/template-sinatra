@@ -9,7 +9,7 @@ require 'rake'
 Rake.application.init
 Rake.application.load_rakefile
 
-Dir[File.join(__dir__, 'support', '**', '*.rb')].each { |file| require file }
+Dir[File.join(__dir__, 'support', '**', '*.rb')].sort.each { |file| require file }
 
 FactoryBot.definition_file_paths = %w[./spec/factories]
 FactoryBot.find_definitions

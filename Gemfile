@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 group :development, :test do
-  gem 'rubocop', require: false
-  gem 'rspec', '~> 3.12', require: false
   gem 'factory_bot', '~> 6.2', require: false
-  gem 'rake', '~> 13.0', require: false
   gem 'rack-test'
+  gem 'rake', '~> 13.0', require: false
+  gem 'rspec', '~> 3.12', require: false
+  gem 'rubocop', require: false
 end
 
 group :test do
@@ -17,7 +19,7 @@ group :development do
   gem 'sinatra-contrib', require: false
 end
 
+gem 'mysql2', '~> 0.5.6'
 gem 'puma', '~> 6.5'
 gem 'rackup', '~> 2.2'
 gem 'sinatra', '~> 4.1'
-gem "mysql2", "~> 0.5.6"

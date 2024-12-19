@@ -8,3 +8,5 @@ require_with_alias('@/config/routes')
 
 set :bind, '0.0.0.0'
 set :port, 4567
+
+puts $LOAD_PATH
