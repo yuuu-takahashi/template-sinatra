@@ -2,9 +2,12 @@
 
 ENV['APP_ENV'] = 'test'
 
+require_relative '../config/setup'
 require 'factory_bot'
 require 'rack/test'
 require 'rake'
+
+require_with_alias('@/config/environment')
 
 Rake.application.init
 Rake.application.load_rakefile

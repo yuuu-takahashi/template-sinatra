@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'erb'
 require 'mysql2'
 require 'yaml'
-require 'erb'
 
 module DatabaseClient
   def self.connect_without_database
@@ -13,25 +13,13 @@ module DatabaseClient
     )
   end
 
-  def self.connect(env = ENV.fetch('APP_ENV', 'development'))
+  def self.connect
     Mysql2::Client.new(
       host: config['host'],
       username: config['username'],
       password: config['password'],
-      database: database_name(env)
+      database: ENV['DATABASE_NAME']
     )
-  end
-
-  def self.database_name(env)
-    case env
-    when 'test'
-      # TODO: データベース名まとめて管理する
-      'template-sinatra_test'
-    when 'production'
-      'template-sinatra_production'
-    else
-      'template-sinatra_development'
-    end
   end
 
   def self.config

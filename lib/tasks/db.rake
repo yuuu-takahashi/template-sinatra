@@ -10,21 +10,15 @@ namespace :db do
   desc 'Create the database'
   task :create do
     client = DatabaseClient.connect_without_database
-    env = ENV['APP_ENV'] || 'development'
-    database_name = DatabaseClient.database_name(env)
-    create_database(client, database_name)
+    create_database(client)
     client.close
-    puts "Database '#{database_name}' created successfully!"
   end
 
   desc 'Drop the database'
   task :drop do
     client = DatabaseClient.connect
-    env = ENV['APP_ENV'] || 'development'
-    database_name = DatabaseClient.database_name(env)
-    drop_database(client, database_name)
+    drop_database(client)
     client.close
-    puts "Database '#{database_name}' dropped successfully!"
   end
 
   desc 'Create the users table'
@@ -32,7 +26,6 @@ namespace :db do
     client = DatabaseClient.connect
     create_users_table(client)
     client.close
-    puts 'Users table created successfully!'
   end
 
   desc 'Seed the users data'
@@ -40,7 +33,6 @@ namespace :db do
     client = DatabaseClient.connect
     create_users_seed_data(client)
     client.close
-    puts 'User seed data created successfully!'
   end
 
   desc 'Setup the database'
@@ -49,5 +41,7 @@ namespace :db do
   end
 
   desc 'Reset the database'
-  task reset: %i[drop setup]
+  task reset: %i[drop setup] do
+    puts 'Database reset completed!'
+  end
 end

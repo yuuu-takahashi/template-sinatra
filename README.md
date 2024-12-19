@@ -24,30 +24,31 @@
 ## ディレクトリ構成
 
 ```bash
+tree -I 'vendor|node_modules'
 .
-├── Gemfile
-├── Gemfile.lock
-├── README.md
-├── Rakefile
-├── app
-│   ├── controllers
-│   │   └── users_controller.rb
-│   ├── models
-│   │   └── user.rb
-│   └── services
-│       └── database_client.rb
-├── db
-│   ├── seeds.rb
-│   └── setup.rb
-├── index.rb
-├── package.json
-├── spec
-│   ├── factories
-│   │   └── user.rb
-│   ├── models
-│   │   └── user_spec.rb
-│   └── spec_helper.rb
-└── yarn.lock
+├── Gemfile                      # プロジェクトの依存関係を定義
+├── Gemfile.lock                 # 固定された依存関係のバージョンを記録
+├── README.md                    # プロジェクトの概要や使い方を記載
+├── Rakefile                     # Rakeタスクを定義
+├── app                          # アプリケーションの主要なロジック
+│   ├── controllers              # コントローラーを格納
+│   └── models                   # モデルを格納
+├── config                       # 設定ファイルや初期設定ファイル
+│   ├── initializers             # 初期化処理用の設定
+│   └── routes.rb                # ルーティング設定
+├── db                           # データベース関連のファイル
+│   ├── seeds                    # シードデータ
+│   └── setup.rb                 # セットアップスクリプト
+├── index.rb                     # アプリケーションのエントリーポイント
+├── lib                          # ライブラリやタスク関連のコード
+│   └── tasks                    # Rakeタスク
+├── package.json                 # Node.jsの依存関係を定義
+├── spec                         # テストコード
+│   ├── controllers              # コントローラーのテスト
+│   ├── factories                # テストデータの定義
+│   ├── models                   # モデルのテスト
+│   └── support                  # テスト用サポートモジュール
+└── yarn.lock                    # 固定された依存関係のバージョンを記録
 ```
 
 ## 開発環境構築
@@ -71,14 +72,20 @@
 
    VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
 
-3. データベース準備
+3. 環境変数の設定
+
+   ```bash
+   cp example.env .env
+   ```
+
+4. データベース準備
 
    ```bash
    bundle exec rake db:setup
    bundle exec rake db:seed
    ```
 
-4. 開発サーバーの起動
+5. 開発サーバーの起動
 
    ```bash
    bundle exec ruby index.rb
@@ -92,6 +99,12 @@
 
 ```bash
 bundle exec rspec
+```
+
+- コードチェック
+
+```bash
+bundle exec rubocop -A
 ```
 
 ## トラブルシューティング
