@@ -13,7 +13,7 @@ def create_database(client)
   end
 end
 
-def create_users_table(client)
+def create_table(client)
   result = client.query("SHOW TABLES LIKE 'users'")
   if result.count.zero?
     create_users_table_sql(client)

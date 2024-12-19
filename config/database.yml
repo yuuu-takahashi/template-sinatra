@@ -6,15 +6,13 @@ default: &default
   host: <%= ENV.fetch('DATABASE_HOST') %>
   username: <%= ENV.fetch('DATABASE_USER') %>
   password: <%= ENV.fetch('DATABASE_PASSWORD') %>
+  database: <%= ENV.fetch('DATABASE_NAME') %>
 
 development:
   <<: *default
-  database: template-sinatra_development
 
 test:
   <<: *default
-  database: template-sinatra_test
 
 production:
   <<: *default
-  database: template-sinatra_production
