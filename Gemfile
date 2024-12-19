@@ -19,6 +19,7 @@ group :development do
   gem 'sinatra-contrib', require: false
 end
 
+gem 'dotenv'
 gem 'mysql2', '~> 0.5.6'
 gem 'puma', '~> 6.5'
 gem 'rackup', '~> 2.2'

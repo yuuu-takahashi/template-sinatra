@@ -9,11 +9,7 @@ services:
       - gem_cache:/workspace/vendor/bundle
     ports:
       - '4567:4567'
-    environment:
-      DATABASE_HOST: db
-      DATABASE_USER: root
-      DATABASE_PASSWORD: password
-      DATABASE_NAME: template-sinatra_development
+    env_file: .env
     tty: true
     stdin_open: true
     command: ['sleep', 'infinity']

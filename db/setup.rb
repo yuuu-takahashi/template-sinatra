@@ -2,7 +2,8 @@
 
 require 'yaml'
 
-def create_database(client, database_name)
+def create_database(client)
+  database_name = ENV['DATABASE_NAME']
   result = client.query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '#{database_name}'")
   if result.count.zero?
     client.query("CREATE DATABASE `#{database_name}`")
@@ -54,7 +55,8 @@ def insert_users(client, users)
   insert_users_data(client)
 end
 
-def drop_database(client, database_name)
+def drop_database(client)
+  database_name = ENV['DATABASE_NAME']
   result = client.query("SHOW DATABASES LIKE '#{database_name}'")
   if result.count.positive?
     client.query("DROP DATABASE `#{database_name}`")

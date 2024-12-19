@@ -10,8 +10,7 @@ namespace :db do
   desc 'Create the database'
   task :create do
     client = DatabaseClient.connect_without_database
-    env = ENV['APP_ENV'] || 'development'
-    database_name = DatabaseClient.database_name(env)
+    database_name = ENV['DATABASE_NAME']
     create_database(client, database_name)
     client.close
     puts "Database '#{database_name}' created successfully!"
@@ -20,8 +19,7 @@ namespace :db do
   desc 'Drop the database'
   task :drop do
     client = DatabaseClient.connect
-    env = ENV['APP_ENV'] || 'development'
-    database_name = DatabaseClient.database_name(env)
+    database_name = ENV['DATABASE_NAME']
     drop_database(client, database_name)
     client.close
     puts "Database '#{database_name}' dropped successfully!"
