@@ -27,8 +27,24 @@ namespace :db do
     puts "Database '#{database_name}' dropped successfully!"
   end
 
+  desc 'Create the users table'
+  task :create_table do
+    client = DatabaseClient.connect
+    create_users_table(client)
+    client.close
+    puts 'Users table created successfully!'
+  end
+
+  desc 'Seed the users data'
+  task :seed_data do
+    client = DatabaseClient.connect
+    create_users_seed_data(client)
+    client.close
+    puts 'User seed data created successfully!'
+  end
+
   desc 'Setup the database'
-  task setup: %i[create] do
+  task setup: %i[create create_table seed_data] do
     puts 'Database setup completed!'
   end
 
