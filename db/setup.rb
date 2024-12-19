@@ -15,19 +15,23 @@ end
 def create_users_table(client)
   result = client.query("SHOW TABLES LIKE 'users'")
   if result.count.zero?
-    client.query(<<-SQL)
-      CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL UNIQUE,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-      )
-    SQL
+    create_users_table_sql(client)
     puts "Table 'users' created successfully!"
   else
     puts "Table 'users' already exists."
   end
+end
+
+def create_users_table_sql(client)
+  client.query(<<-SQL)
+    CREATE TABLE IF NOT EXISTS users (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      name VARCHAR(255) NOT NULL,
+      email VARCHAR(255) NOT NULL UNIQUE,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    )
+  SQL
 end
 
 def create_users_seed_data(client)
@@ -36,15 +40,18 @@ def create_users_seed_data(client)
 
   if user_count.zero?
     users = YAML.load_file('users.yml')
-
-    users.each do |user|
-      client.query("INSERT INTO users (name, email) VALUES ('#{user['name']}', '#{user['email']}')")
-    end
-    insert_users_data(client)
+    insert_users(client, users)
     puts 'users data inserted successfully!'
   else
     puts 'users data already exists. No data inserted.'
   end
+end
+
+def insert_users(client, users)
+  users.each do |user|
+    client.query("INSERT INTO users (name, email) VALUES ('#{user['name']}', '#{user['email']}')")
+  end
+  insert_users_data(client)
 end
 
 def drop_database(client, database_name)

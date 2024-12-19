@@ -25,7 +25,7 @@ module DatabaseClient
   def self.database_name(env)
     case env
     when 'test'
-      # TODO:
+      # TODO: データベース名まとめて管理する
       'template-sinatra_test'
     when 'production'
       'template-sinatra_production'
