@@ -82,8 +82,8 @@
    ```bash
    bundle exec ruby index.rb
    ```
-  
-  <http://localhost:4567> で確認できます。
+
+<http://localhost:4567> で確認できます。
 
 ## 開発作業ガイド
 
