@@ -22,9 +22,11 @@ namespace :db do
   end
 
   desc 'Create the users table'
-  task :create_table do
+  task :migrate do
     client = DatabaseClient.connect
-    create_users_table(client)
+    create_table(client)
+    create_schema_migrations_table(client)
+    generate_schema(client)
     client.close
   end
 
@@ -36,7 +38,7 @@ namespace :db do
   end
 
   desc 'Setup the database'
-  task setup: %i[create create_table] do
+  task setup: %i[create migrate] do
     puts 'Database setup completed!'
   end
 

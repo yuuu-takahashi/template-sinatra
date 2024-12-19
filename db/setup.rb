@@ -13,7 +13,7 @@ def create_database(client)
   end
 end
 
-def create_users_table(client)
+def create_table(client)
   result = client.query("SHOW TABLES LIKE 'users'")
   if result.count.zero?
     create_users_table_sql(client)
@@ -77,7 +77,7 @@ def create_schema_migrations_table(client)
 end
 
 def generate_schema(client)
-  schema_file = 'db/schema.sql'
+  schema_file = 'db/schema.rb'
   tables = fetch_tables(client)
 
   File.open(schema_file, 'w') do |file|

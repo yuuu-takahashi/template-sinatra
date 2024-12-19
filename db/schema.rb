@@ -1,5 +1,5 @@
 # This file is auto-generated. Do not edit manually.
-# Schema generated at: 2024-12-19 15:52:03 +0000
+# Schema generated at: 2024-12-19 18:22:26 +0000
 
 ### Table: schema_migrations
 CREATE TABLE `schema_migrations` (
@@ -16,5 +16,5 @@ CREATE TABLE `users` (
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
