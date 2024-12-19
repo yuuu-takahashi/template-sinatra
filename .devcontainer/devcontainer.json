@@ -1,15 +1,8 @@
 {
-  "name": "Ruby",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "context": ".."
-  },
+  "name": "ruby-web",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "web",
   "workspaceFolder": "/workspace",
-  "mounts": [
-    "source=${localWorkspaceFolder},target=/workspace,type=bind",
-    "source=${localWorkspaceFolderBasename}_node_modules,target=/workspace/node_modules,type=volume",
-    "source=${localWorkspaceFolderBasename}_bundle,target=/workspace/vendor/bundle,type=volume"
-  ],
   "customizations": {
     "vscode": {
       "extensions": [
