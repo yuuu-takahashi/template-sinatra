@@ -3,4 +3,4 @@ Style/Documentation:
 
 Metrics/BlockLength:
   Exclude:
-    - 'lib/tasks/db.rake'
+    - 'Rakefile'
