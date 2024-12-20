@@ -95,13 +95,31 @@ tree -I 'vendor|node_modules'
 
 ## 開発作業ガイド
 
-- テスト
+- マイグレーションファイルの追加
+
+```bash
+bundle exec rake db:generate_migrate[ファイル名]
+```
+
+例: usersテーブル作成用のマイグレーションファイルを生成する場合
+
+```bash
+bundle exec rake db:generate_migrate[create_users]
+```
+
+- マイグレーションの実行
+
+```bash
+bundle exec rake db:migrate
+```
+
+- テストの実行
 
 ```bash
 bundle exec rspec
 ```
 
-- コードチェック
+- コードの静的解析と修正
 
 ```bash
 bundle exec rubocop -A
