@@ -31,6 +31,6 @@ class UsersController < Sinatra::Base
     status 500
     { error: e.message }.to_json
   ensure
-    client&.close
+    client&.disconnect
   end
 end
