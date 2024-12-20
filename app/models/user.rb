@@ -18,7 +18,7 @@ class User
   end
 
   def self.find(client, id)
-    client[:users].where(id: id).all
+    results = client[:users].where(id: id).all
     new(results.first)
   end
 
