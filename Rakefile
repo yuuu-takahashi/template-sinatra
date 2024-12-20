@@ -45,4 +45,11 @@ namespace :db do
   task reset: %i[drop setup] do
     puts 'Database reset completed!'
   end
+
+  desc 'Generate migrate'
+  task :generate_migrate, [:name] do |_t, args|
+    migration_name = args[:name]
+    puts "Generating migration for: #{migration_name}"
+    generate_migrate_file(migration_name)
+  end
 end

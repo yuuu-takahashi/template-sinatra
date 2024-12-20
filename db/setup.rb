@@ -18,18 +18,9 @@ def create_table(client)
   if client.table_exists?(:users)
     puts "Table 'users' already exists."
   else
-    create_users_table_sql(client)
+    Sequel.extension :migration
+    Sequel::Migrator.run(client, 'db/migrate')
     puts "Table 'users' created successfully!"
-  end
-end
-
-def create_users_table_sql(client)
-  client.create_table?(:users) do
-    primary_key :id
-    String :name, null: false
-    String :email, null: false, unique: true
-    DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP
-    DateTime :updated_at, default: Sequel::CURRENT_TIMESTAMP
   end
 end
 
@@ -100,4 +91,50 @@ def write_column_definition(file, column, attributes)
   options << "null: #{attributes[:allow_null]}" unless attributes[:allow_null].nil?
   options << "default: '#{attributes[:default]}'" unless attributes[:default].nil?
   file.puts "    column :#{column}, :#{type}#{options.any? ? ", #{options.join(', ')}" : ''}"
+end
+
+def generate_migrate_file(migration_name)
+  validate_migration_name(migration_name)
+  file_path = generate_file_path(migration_name)
+  template = migration_template
+
+  write_migration_file(file_path, template)
+  puts "マイグレーションファイルが生成されました: #{file_path}"
+end
+
+def validate_migration_name(migration_name)
+  return unless migration_name.nil? || migration_name.strip.empty?
+
+  puts 'エラー: マイグレーション名を指定してください。例: rake db:generate_migrate[create_users]'
+  exit 1
+end
+
+def generate_file_path(migration_name)
+  timestamp = Time.now.strftime('%Y%m%d%H%M%S')
+  file_name = "#{timestamp}_#{migration_name}.rb"
+  File.join('db', 'migrate', file_name)
+end
+
+def migration_template
+  <<~RUBY
+    # frozen_string_literal: true
+
+    Sequel.migration do
+      change do
+        # 例:
+        # create_table(:users) do
+        #   primary_key :id
+        #   String :name, null: false
+        #   String :email, null: false, unique: true
+        #   DateTime :created_at
+        #   DateTime :updated_at
+        # end
+      end
+    end
+  RUBY
+end
+
+def write_migration_file(file_path, template)
+  FileUtils.mkdir_p(File.dirname(file_path))
+  File.write(file_path, template)
 end

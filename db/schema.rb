@@ -4,11 +4,14 @@
 # To regenerate it, run the schema generation script
 
 Sequel::Schema.define do
+  create_table :schema_migrations do
+    column :filename, :string, null: false
+  end
   create_table :users do
     column :id, :integer, null: false
     column :name, :string, null: false
     column :email, :string, null: false
-    column :created_at, :datetime, null: true, default: 'CURRENT_TIMESTAMP'
-    column :updated_at, :datetime, null: true, default: 'CURRENT_TIMESTAMP'
+    column :created_at, :datetime, null: true
+    column :updated_at, :datetime, null: true
   end
 end
