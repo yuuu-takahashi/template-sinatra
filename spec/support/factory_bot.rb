@@ -7,11 +7,9 @@ require_with_alias('@/config/initializers/database_client')
 FactoryBot.define do
   to_create do |instance|
     client = DatabaseClient.connect
-    query = "INSERT INTO users (name, email) VALUES ('#{instance.name}', '#{instance.email}')"
-    client.query(query)
+    client[:users].insert(name: instance.name, email: instance.email)
 
-    result = client.query('SELECT LAST_INSERT_ID() AS id').first
-    instance.id = result['id']
-    client.close
+    instance.id = client[:users].select(Sequel.function(:LAST_INSERT_ID).as(:id)).first[:id]
+    client.disconnect
   end
 end

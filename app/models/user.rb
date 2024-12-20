@@ -13,12 +13,12 @@ class User
   end
 
   def self.all(client)
-    results = client.query('SELECT * FROM users')
+    results = client[:users].all
     results.map { |row| new(row) }
   end
 
   def self.find(client, id)
-    results = client.query("SELECT * FROM users WHERE id = #{id}")
+    results = client[:users].where(id: id).all
     new(results.first)
   end
 
