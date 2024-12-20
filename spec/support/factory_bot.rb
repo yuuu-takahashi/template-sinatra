@@ -12,6 +12,6 @@ FactoryBot.define do
 
     result = client.query('SELECT LAST_INSERT_ID() AS id').first
     instance.id = result['id']
-    client.close
+    client.disconnect
   end
 end

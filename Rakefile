@@ -11,28 +11,28 @@ namespace :db do
   task :create do
     client = DatabaseClient.connect_without_database
     create_database(client)
-    client.close
+    client.disconnect
   end
 
   desc 'Drop the database'
   task :drop do
     client = DatabaseClient.connect
     drop_database(client)
-    client.close
+    client.disconnect
   end
 
   desc 'Migrate the database'
   task :migrate do
     client = DatabaseClient.connect
     create_table(client)
-    client.close
+    client.disconnect
   end
 
   desc 'Seed the users data'
   task :seed do
     client = DatabaseClient.connect
     create_users_seed_data(client)
-    client.close
+    client.disconnect
   end
 
   desc 'Setup the database'
