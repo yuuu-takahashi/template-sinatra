@@ -25,6 +25,7 @@ namespace :db do
   task :migrate do
     client = DatabaseClient.connect
     create_table(client)
+    generate_schema(client)
     client.disconnect
   end
 
