@@ -30,25 +30,25 @@ tree -I 'vendor|node_modules'
 ├── Gemfile.lock                 # 固定された依存関係のバージョンを記録
 ├── README.md                    # プロジェクトの概要や使い方を記載
 ├── Rakefile                     # Rakeタスクを定義
-├── app                          # アプリケーションの主要なロジック
-│   ├── controllers              # コントローラーを格納
-│   └── models                   # モデルを格納
-├── config                       # 設定ファイルや初期設定ファイル
-│   ├── initializers             # 初期化処理用の設定
-│   └── routes.rb                # ルーティング設定
-├── db                           # データベース関連のファイル
-│   ├── seeds                    # シードデータ
-│   └── setup.rb                 # セットアップスクリプト
-├── index.rb                     # アプリケーションのエントリーポイント
-├── lib                          # ライブラリやタスク関連のコード
-│   └── tasks                    # Rakeタスク
-├── package.json                 # Node.jsの依存関係を定義
-├── spec                         # テストコード
-│   ├── controllers              # コントローラーのテスト
-│   ├── factories                # テストデータの定義
-│   ├── models                   # モデルのテスト
-│   └── support                  # テスト用サポートモジュール
-└── yarn.lock                    # 固定された依存関係のバージョンを記録
+├── app                          # アプリケーションの主要なロジックを格納
+│   ├── controllers              # コントローラー。HTTPリクエストを処理しレスポンスを生成
+│   └── models                   # モデル。データベースとのやりとりやビジネスロジックを担当
+├── config                       # アプリケーションの設定ファイルを格納
+│   ├── environment.rb           # 環境ごとの設定を管理
+│   ├── initializers             # 初期化処理をまとめたファイル群
+│   ├── routes.rb                # ルーティング設定
+│   └── setup.rb                 # アプリケーション全体のセットアップ処理
+├── db                           # データベース関連のファイルを格納
+│   ├── migrate                  # マイグレーションファイルを格納
+│   ├── schema.rb                # データベーススキーマを定義
+│   ├── seeds                    # シードデータ（初期データ）を格納
+│   └── setup.rb                 # データベースのセットアップ処理
+├── spec                         # テストコードを格納
+│   ├── controllers              # コントローラーのテストコード
+│   ├── factories                # テストデータ生成の設定（FactoryBot）
+│   ├── models                   # モデルのテストコード
+│   ├── spec_helper.rb           # RSpecの基本設定
+│   └── support                  # テストサポート用のファイル
 ```
 
 ## 開発環境構築
