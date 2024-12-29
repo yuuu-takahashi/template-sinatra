@@ -15,16 +15,14 @@ class User
   def self.all
     with_database_client do |client|
       query = 'SELECT * FROM users'
-      results = client.fetch(query).all
-      results.map { |row| new(row) }
+      client.fetch(query).all
     end
   end
 
   def self.find(id)
     with_database_client do |client|
       query = 'SELECT * FROM users WHERE id = ? LIMIT 1'
-      result = client.fetch(query, id).first
-      result ? new(result) : nil
+      client.fetch(query, id).first
     end
   end
 
