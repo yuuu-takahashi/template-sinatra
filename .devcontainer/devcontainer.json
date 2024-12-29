@@ -5,10 +5,7 @@
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "esbenp.prettier-vscode",
-        "Shopify.ruby-extensions-pack"
-      ],
+      "extensions": ["esbenp.prettier-vscode", "Shopify.ruby-extensions-pack"],
       "settings": {
         "editor.tabSize": 2,
         "files.trimTrailingWhitespace": true,
