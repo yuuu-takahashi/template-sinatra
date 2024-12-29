@@ -7,6 +7,9 @@ services:
       - ..:/workspace
       - node_modules_cache:/workspace/node_modules
       - gem_cache:/workspace/vendor/bundle
+    env_file: ../.env.development
+    tty: true
+    stdin_open: true
     command: ['sleep', 'infinity']
 
   db:

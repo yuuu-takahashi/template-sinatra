@@ -8,27 +8,32 @@
 ```bash
 tree -I 'vendor|node_modules'
 .
-├── Gemfile                      # プロジェクトの依存関係
-├── Gemfile.lock                 # 固定された依存関係のバージョンの記録
-├── Rakefile                     # Rakeタスク
+├── Gemfile                      # Rubyの依存関係を定義
+├── Gemfile.lock                 # 依存関係のバージョン
+├── Rakefile                     # Rakeタスクを定義
 ├── app                          # アプリケーションの主要ロジック
-│   ├── controllers              # コントローラー：HTTPリクエストの処理とレスポンスの生成
-│   └── models                   # モデル：データベースとのやりとりとビジネスロジック
-├── config                       # アプリケーションの設定ファイル
-│   ├── environment.rb           # 環境ごとの設定の管理
-│   ├── routes.rb                # ルーティング
-│   └── setup.rb                 # アプリケーション全体のセットアップ処理
-├── db                           # データベース関連のファイル
+│   ├── controllers              # コントローラー：リクエスト/レスポンス処理
+│   └── models                   # モデル：ビジネスロジックやDB操作
+├── config                       # 環境設定ファイル
+│   ├── environment.rb           # 環境変数などの設定
+│   └── routes.rb                # アプリのルーティング
+├── db                           # データベース関連
 │   ├── migrate                  # マイグレーションファイル
 │   ├── schema.rb                # データベーススキーマ
-│   ├── seeds                    # シードデータ（初期データ）
-│   └── setup.rb                 # データベースのセットアップ処理
+│   ├── seeds                    # 初期データを投入するファイル
+│   ├── setup.rb                 # DBセットアップ処理
+│   └── utilities.rb             # DBユーティリティ関数など
+├── index.rb                     # エントリーポイント
+├── lib                          # 共通ライブラリ
+│   └── database_client.rb       # DBクライアント処理
+├── package.json                 # Node.jsの依存関係を定義
 ├── spec                         # テストコード
-│   ├── controllers              # コントローラーのテストコード
-│   ├── factories                # FactoryBot設定
-│   ├── models                   # モデルのテストコード
-│   ├── spec_helper.rb           # RSpecの基本設定
-│   └── support                  # テストサポート用のファイル
+│   ├── controllers              # コントローラーのテスト
+│   ├── factories                # テストデータ生成用FactoryBot設定
+│   ├── models                   # モデルのテスト
+│   ├── spec_helper.rb           # RSpecの設定
+│   └── support                  # テストサポートファイル
+└── yarn.lock                    # 依存関係のバージョン
 ```
 
 ## 開発環境構築
@@ -56,7 +61,6 @@ tree -I 'vendor|node_modules'
 
 3. VS Codeのの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択し、起動
 
-
 4. データベース準備
 
    ```bash
@@ -70,7 +74,7 @@ tree -I 'vendor|node_modules'
    bundle exec ruby index.rb
    ```
 
-ブラウザでhttp://localhost:4567を開き、表示確認
+ブラウザで <http://localhost:4567> を開き、表示確認
 
 ## 開発作業ガイド
 
