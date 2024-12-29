@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_with_alias('@/app/controllers/users_controller')
-
 get '/' do
   'TOP'
 end

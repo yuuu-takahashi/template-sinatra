@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'erb'
 require 'sequel'
 require 'yaml'
 

@@ -4,20 +4,11 @@ require 'dotenv'
 
 APP_ROOT = File.expand_path('..', __dir__)
 
-env_file = case ENV['APP_ENV']
-           when 'production'
-             File.join(APP_ROOT, '.env.production')
-           when 'test'
-             File.join(APP_ROOT, '.env.test')
-           else
-             File.join(APP_ROOT, '.env')
-           end
+env_file = File.join(APP_ROOT, ".env.#{ENV.fetch('APP_ENV', 'development')}")
 
-if File.exist?(env_file)
-  puts 'Env file found'
-else
-  raise "Error: Env file not found at #{env_file}"
-end
+raise "Error: Env file not found at #{env_file}" unless File.exist?(env_file)
+
+puts 'Env file found'
 
 Dotenv.overload(env_file)
 

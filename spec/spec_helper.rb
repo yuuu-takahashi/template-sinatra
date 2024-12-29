@@ -6,8 +6,9 @@ require_relative '../config/environment'
 require 'factory_bot'
 require 'rack/test'
 require 'rake'
-
-require_with_alias('@/config/environment')
+require_with_alias('@/index')
+require_with_alias('@/app/models/user')
+require_with_alias('@/lib/database_client')
 
 Rake.application.init
 Rake.application.load_rakefile

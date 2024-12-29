@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 
 require 'sinatra/base'
-require_relative '../../config/environment'
-require_with_alias('@/app/models/user')
-require_with_alias('@/lib/database_client')
 
 class UsersController < Sinatra::Base
   before do

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../config/environment'
-require_with_alias('@/app/models/user')
-require_with_alias('@/lib/database_client')
-
 FactoryBot.define do
   to_create do |instance|
     client = DatabaseClient.connect
