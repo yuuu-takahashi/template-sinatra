@@ -54,12 +54,4 @@ module DBSetup
       puts 'users data already exists. No data inserted.'
     end
   end
-
-  # def generate_schema(client)
-  #   File.open('db/schema.rb', 'w') do |file|
-  #     write_schema_header(file)
-  #     write_tables_schema(client, file)
-  #     file.puts 'end'
-  #   end
-  # end
 end
