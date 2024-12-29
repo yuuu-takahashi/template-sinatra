@@ -1,8 +1,3 @@
-# frozen_string_literal: true
-
-require_relative '../../config/setup'
-require_with_alias('@/index')
-
 RSpec.describe 'users_controller' do
   it 'users' do
     create_list(:user, 3)

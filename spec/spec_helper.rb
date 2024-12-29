@@ -1,13 +1,10 @@
-# frozen_string_literal: true
-
 ENV['APP_ENV'] = 'test'
 
-require_relative '../config/setup'
 require 'factory_bot'
 require 'rack/test'
 require 'rake'
 
-require_with_alias('@/config/environment')
+require_relative '../index'
 
 Rake.application.init
 Rake.application.load_rakefile

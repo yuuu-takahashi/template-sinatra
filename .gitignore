@@ -56,4 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 /node_modules
 /.ruby-lsp
-.env
+.env.development

@@ -4,3 +4,6 @@ Style/Documentation:
 Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
