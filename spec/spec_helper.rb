@@ -2,14 +2,11 @@
 
 ENV['APP_ENV'] = 'test'
 
-require_relative '../config/environment'
-require 'dotenv'
 require 'factory_bot'
 require 'rack/test'
+require 'rake'
 
-require_with_alias('@/index')
-require_with_alias('@/app/models/user')
-require_with_alias('@/lib/database_client')
+require_relative '../index'
 
 Rake.application.init
 Rake.application.load_rakefile

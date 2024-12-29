@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'yaml'
+require 'sequel'
 
 module DatabaseClient
   def self.connect_without_database

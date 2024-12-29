@@ -14,11 +14,7 @@ ROUTES = {
 ROUTES.each do |http_method, paths|
   paths.each do |path, (controller, action)|
     send(http_method, path) do
-      if params.empty?
-        controller.send(action)
-      else
-        controller.send(action, params)
-      end
+      controller.send(action, params)
     end
   end
 end

@@ -4,10 +4,9 @@ FactoryBot.define do
   to_create do |instance|
     client = DatabaseClient.connect
     query = "INSERT INTO users (name, email) VALUES ('#{instance.name}', '#{instance.email}')"
-    client.fetch(query)
+    client.run(query)
 
-    result = client.fetch('SELECT LAST_INSERT_ID() AS id').first
-    instance.id = result['id']
+    instance.id = client[:users].select(Sequel.function(:LAST_INSERT_ID).as(:id)).first[:id]
     client.disconnect
   end
 end
