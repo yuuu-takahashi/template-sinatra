@@ -8,5 +8,7 @@ require_with_alias('@/app/controllers/top_controller')
 require_with_alias('@/app/controllers/users_controller')
 require_with_alias('@/config/routes')
 
+Dir[File.join(__dir__, '{app,config,db,spen}/**/*.rb')].each { |file| also_reload file } if development?
+
 set :bind, '0.0.0.0'
 set :port, 4567
