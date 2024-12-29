@@ -8,12 +8,12 @@ class UsersController < Sinatra::Base
   end
 
   def self.index
-    users = User.all(client)
+    users = User.all
     users.map(&:to_h).to_json
   end
 
   def self.show(params)
-    user = User.find(client, params[:id])
+    user = User.find(params[:id])
     user.to_h.to_json
   end
 end

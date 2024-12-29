@@ -11,7 +11,7 @@ Sequel::Schema.define do
     column :id, :integer, null: false
     column :name, :string, null: false
     column :email, :string, null: false
-    column :created_at, :datetime, null: true
-    column :updated_at, :datetime, null: true
+    column :created_at, :datetime, null: true, default: 'CURRENT_TIMESTAMP'
+    column :updated_at, :datetime, null: true, default: 'CURRENT_TIMESTAMP'
   end
 end

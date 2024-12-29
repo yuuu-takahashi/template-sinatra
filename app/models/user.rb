@@ -15,7 +15,7 @@ class User
   def self.all
     with_database_client do |client|
       query = 'SELECT * FROM users'
-      results = client.query(query, symbolize_keys: true)
+      results = client.fetch(query).all
       results.map { |row| new(row) }
     end
   end
@@ -23,8 +23,7 @@ class User
   def self.find(id)
     with_database_client do |client|
       query = 'SELECT * FROM users WHERE id = ? LIMIT 1'
-      statement = client.prepare(query)
-      result = statement.execute(id).first
+      result = client.fetch(query, id).first
       result ? new(result) : nil
     end
   end
@@ -43,6 +42,6 @@ class User
     client = DatabaseClient.connect
     yield(client)
   ensure
-    client&.close
+    client.disconnect
   end
 end
