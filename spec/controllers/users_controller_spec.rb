@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe 'users_controller' do
   it 'users' do
     create_list(:user, 3)

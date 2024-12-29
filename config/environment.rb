@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'dotenv'
 
 APP_ROOT = File.expand_path('..', __dir__)

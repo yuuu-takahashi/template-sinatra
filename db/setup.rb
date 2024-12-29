@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'yaml'
 require_with_alias('@/lib/database_client')
 require_with_alias('@/db/utilities')

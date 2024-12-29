@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'sinatra/base'
 
 class UsersController < Sinatra::Base

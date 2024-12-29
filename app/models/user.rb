@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class User
   attr_accessor :id
   attr_reader :name, :email, :created_at, :updated_at

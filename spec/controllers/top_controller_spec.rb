@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 RSpec.describe 'top_controller' do
   it '/' do
     get '/'

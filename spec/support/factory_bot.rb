@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   to_create do |instance|
     client = DatabaseClient.connect
