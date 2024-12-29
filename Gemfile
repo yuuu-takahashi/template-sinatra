@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'dotenv'
+gem 'dotenv', require: 'dotenv/load'
 gem 'mysql2', '~> 0.5.6'
 gem 'puma', '~> 6.5'
 gem 'rackup', require: false
