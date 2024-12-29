@@ -2,10 +2,10 @@
 
 source 'https://rubygems.org'
 
-gem 'dotenv', require: 'dotenv/load'
+gem 'dotenv'
 gem 'mysql2', '~> 0.5.6'
 gem 'puma', '~> 6.5'
-gem 'rackup', '~> 2.2', require: false
+gem 'rackup', require: false
 gem 'rake', '~> 13.0'
 gem 'sequel', '~> 5.47', require: false
 gem 'sinatra', '~> 4.1'
