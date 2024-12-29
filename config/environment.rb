@@ -2,22 +2,25 @@
 
 require 'dotenv'
 
+APP_ROOT = File.expand_path('..', __dir__)
+
 env_file = case ENV['APP_ENV']
            when 'production'
-             File.expand_path('../.env.production', __dir__)
+             File.join(APP_ROOT, '.env.production')
            when 'test'
-             File.expand_path('../.env.test', __dir__)
+             File.join(APP_ROOT, '.env.test')
            else
-             File.expand_path('../.env', __dir__)
+             File.join(APP_ROOT, '.env')
            end
-
-puts "Using env file: #{env_file}"
 
 if File.exist?(env_file)
   puts 'Env file found'
 else
-  puts 'Env file not found!'
+  raise "Error: Env file not found at #{env_file}"
 end
 
-loaded_vars = Dotenv.overload(env_file)
-puts "Loaded variables: #{loaded_vars.inspect}"
+Dotenv.overload(env_file)
+
+def require_with_alias(path)
+  require path.sub('@/', "#{APP_ROOT}/")
+end

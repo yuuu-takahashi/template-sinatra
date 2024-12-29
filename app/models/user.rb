@@ -12,14 +12,21 @@ class User
     @updated_at = attributes['updated_at']
   end
 
-  def self.all(client)
-    results = client.query('SELECT * FROM users')
-    results.map { |row| new(row) }
+  def self.all
+    with_database_client do |client|
+      query = 'SELECT * FROM users'
+      results = client.query(query, symbolize_keys: true)
+      results.map { |row| new(row) }
+    end
   end
 
-  def self.find(client, id)
-    results = client.query("SELECT * FROM users WHERE id = #{id}")
-    new(results.first)
+  def self.find(id)
+    with_database_client do |client|
+      query = 'SELECT * FROM users WHERE id = ? LIMIT 1'
+      statement = client.prepare(query)
+      result = statement.execute(id).first
+      result ? new(result) : nil
+    end
   end
 
   def to_h
@@ -30,5 +37,12 @@ class User
       created_at: @created_at,
       updated_at: @updated_at
     }
+  end
+
+  def self.with_database_client
+    client = DatabaseClient.connect
+    yield(client)
+  ensure
+    client&.close
   end
 end
