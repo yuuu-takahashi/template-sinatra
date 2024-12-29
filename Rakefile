@@ -2,7 +2,7 @@
 
 require 'rake'
 
-require_relative 'config/setup'
+require_relative 'config/environment'
 require_with_alias('@/lib/database_client')
 require_with_alias('@/db/setup')
 

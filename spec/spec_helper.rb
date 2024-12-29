@@ -2,7 +2,7 @@
 
 ENV['APP_ENV'] = 'test'
 
-require_relative '../config/setup'
+require_relative '../config/environment'
 require 'factory_bot'
 require 'rack/test'
 require 'rake'
