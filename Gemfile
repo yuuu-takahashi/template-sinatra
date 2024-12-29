@@ -5,7 +5,6 @@ source 'https://rubygems.org'
 group :development, :test do
   gem 'factory_bot', '~> 6.2', require: false
   gem 'rack-test'
-  gem 'rake', '~> 13.0', require: false
   gem 'rspec', '~> 3.12', require: false
   gem 'rubocop', require: false
 end
@@ -23,5 +22,6 @@ gem 'dotenv'
 gem 'mysql2', '~> 0.5.6'
 gem 'puma', '~> 6.5'
 gem 'rackup', '~> 2.2'
+gem 'rake', '~> 13.0', require: false
 gem 'sequel', '~> 5.47'
 gem 'sinatra', '~> 4.1'

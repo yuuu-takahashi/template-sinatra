@@ -1,54 +1,55 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: true
-
 require 'rake'
 
-require_relative './config/setup'
+require_relative 'config/setup'
 require_with_alias('@/config/initializers/database_client')
 require_with_alias('@/db/setup')
 
 namespace :db do
-  desc 'データベースを作成します'
+  desc 'Create the database'
   task :create do
-    client = Mysql2::Client.new(
-      host: ENV['DATABASE_HOST'],
-      username: ENV['DATABASE_USER'],
-      password: ENV['DATABASE_PASSWORD']
-    )
-
-    db_name = ENV['DATABASE_NAME']
-    client.query("CREATE DATABASE IF NOT EXISTS #{db_name}")
-    puts "データベースを作成しました: #{db_name}"
-  rescue Mysql2::Error => e
-    puts "エラーが発生しました: #{e.message}"
-  ensure
-    client&.close
+    client = DatabaseClient.connect_without_database
+    create_database(client)
+    client.disconnect
   end
 
-  desc 'データを追加します'
+  desc 'Drop the database'
+  task :drop do
+    client = DatabaseClient.connect
+    drop_database(client)
+    client.disconnect
+  end
+
+  desc 'Migrate the database'
+  task :migrate do
+    client = DatabaseClient.connect
+    create_table(client)
+    generate_schema(client)
+    client.disconnect
+  end
+
+  desc 'Seed the users data'
   task :seed do
-    client = Mysql2::Client.new(
-      host: ENV['DATABASE_HOST'],
-      username: ENV['DATABASE_USER'],
-      password: ENV['DATABASE_PASSWORD'],
-      database: ENV['DATABASE_NAME']
-    )
+    client = DatabaseClient.connect
+    create_users_seed_data(client)
+    client.disconnect
+  end
 
-    client.query(<<~SQL)
-      CREATE TABLE IF NOT EXISTS users (
-       id INT AUTO_INCREMENT PRIMARY KEY,
-       name VARCHAR(255),
-       email VARCHAR(255)
-      );
-    SQL
+  desc 'Setup the database'
+  task setup: %i[create migrate] do
+    puts 'Database setup completed!'
+  end
 
-    client.query("INSERT INTO users (name, email) VALUES ('Alice', 'alice@example.com')")
-    client.query("INSERT INTO users (name, email) VALUES ('Bob', 'bob@example.com')")
-    puts 'サンプルデータを追加しました'
-  rescue Mysql2::Error => e
-    puts "エラーが発生しました: #{e.message}"
-  ensure
-    client&.close
+  desc 'Reset the database'
+  task reset: %i[drop setup] do
+    puts 'Database reset completed!'
+  end
+
+  desc 'Generate migrate'
+  task :generate_migrate, [:name] do |_t, args|
+    migration_name = args[:name]
+    puts "Generating migration for: #{migration_name}"
+    generate_migrate_file(migration_name)
   end
 end
