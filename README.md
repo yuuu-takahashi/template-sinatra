@@ -1,6 +1,7 @@
 # template-sinatra
 
 このリポジトリはSinatraのテンプレートプロジェクトです。
+このプロジェクトは、[Dev Container](https://code.visualstudio.com/docs/devcontainers/containers)での利用を想定した構成になっています。
 
 ## 目次
 
@@ -9,8 +10,8 @@
   - [使用技術](#使用技術)
   - [ディレクトリ構成](#ディレクトリ構成)
   - [開発環境構築](#開発環境構築)
-    - [準備](#準備)
-    - [開発サーバーセットアップ](#開発サーバーセットアップ)
+  - [必要なツール](#必要なツール)
+    - [開発環境の準備](#開発環境の準備)
   - [開発作業ガイド](#開発作業ガイド)
   - [トラブルシューティング](#トラブルシューティング)
 
@@ -18,34 +19,32 @@
 
 | 言語・フレームワーク | バージョン |
 | -------------------- | ---------- |
-| Ruby                 | 3.1.x      |
-| Node.js              | 20.x.x     |
+| Ruby                 | 3.3.x      |
+| Node.js              | 22.x.x     |
 
 ## ディレクトリ構成
 
 ```bash
 tree -I 'vendor|node_modules'
 .
-├── Gemfile                      # プロジェクトの依存関係を定義
-├── Gemfile.lock                 # 固定された依存関係のバージョンを記録
-├── README.md                    # プロジェクトの概要や使い方を記載
-├── Rakefile                     # Rakeタスクを定義
-├── app                          # アプリケーションの主要なロジックを格納
-│   ├── controllers              # コントローラー。HTTPリクエストを処理しレスポンスを生成
-│   └── models                   # モデル。データベースとのやりとりやビジネスロジックを担当
-├── config                       # アプリケーションの設定ファイルを格納
-│   ├── environment.rb           # 環境ごとの設定を管理
-│   ├── initializers             # 初期化処理をまとめたファイル群
-│   ├── routes.rb                # ルーティング設定
+├── Gemfile                      # プロジェクトの依存関係
+├── Gemfile.lock                 # 固定された依存関係のバージョンの記録
+├── Rakefile                     # Rakeタスク
+├── app                          # アプリケーションの主要ロジック
+│   ├── controllers              # コントローラー：HTTPリクエストの処理とレスポンスの生成
+│   └── models                   # モデル：データベースとのやりとりとビジネスロジック
+├── config                       # アプリケーションの設定ファイル
+│   ├── environment.rb           # 環境ごとの設定の管理
+│   ├── routes.rb                # ルーティング
 │   └── setup.rb                 # アプリケーション全体のセットアップ処理
-├── db                           # データベース関連のファイルを格納
-│   ├── migrate                  # マイグレーションファイルを格納
-│   ├── schema.rb                # データベーススキーマを定義
-│   ├── seeds                    # シードデータ（初期データ）を格納
+├── db                           # データベース関連のファイル
+│   ├── migrate                  # マイグレーションファイル
+│   ├── schema.rb                # データベーススキーマ
+│   ├── seeds                    # シードデータ（初期データ）
 │   └── setup.rb                 # データベースのセットアップ処理
-├── spec                         # テストコードを格納
+├── spec                         # テストコード
 │   ├── controllers              # コントローラーのテストコード
-│   ├── factories                # テストデータ生成の設定（FactoryBot）
+│   ├── factories                # FactoryBot設定
 │   ├── models                   # モデルのテストコード
 │   ├── spec_helper.rb           # RSpecの基本設定
 │   └── support                  # テストサポート用のファイル
@@ -53,30 +52,29 @@ tree -I 'vendor|node_modules'
 
 ## 開発環境構築
 
-### 準備
+## 必要なツール
 
-- [VS Code](https://code.visualstudio.com/)をインストール
-- [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)をインストール
-- [Docker](https://www.docker.com/ja-jp/)をインストール
+- [VS Code](https://code.visualstudio.com/)
+- [Docker](https://www.docker.com/ja-jp/)
+- VS Codeの[Dev Containers拡張機能](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
 
-### 開発サーバーセットアップ
+### 開発環境の準備
 
-1. リポジトリをclone
+1. リポジトリをクローン
 
    ```bash
    git clone git@github.com:yuuu-takahashi/template-sinatra.git
    cd template-sinatra
    ```
 
-2. Dev Containerの起動
-
-   VS Codeの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択して起動します。
-
-3. 環境変数の設定
+2. 環境変数の設定
 
    ```bash
-   cp example.env .env
+   cp example.env .env.development
    ```
+
+3. VS Codeのの左下「><」アイコンをクリックし、「Remote-Containers: Reopen in Container」を選択し、起動
+
 
 4. データベース準備
 
@@ -85,13 +83,13 @@ tree -I 'vendor|node_modules'
    bundle exec rake db:seed
    ```
 
-5. 開発サーバーの起動
+5. 開発サーバー起動
 
    ```bash
    bundle exec ruby index.rb
    ```
 
-<http://localhost:4567> で確認できます。
+ブラウザでhttp://localhost:4567を開き、表示確認
 
 ## 開発作業ガイド
 

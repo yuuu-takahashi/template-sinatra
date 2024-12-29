@@ -1,11 +1,8 @@
 # frozen_string_literal: true
 
-get '/' do
-  'TOP'
-end
-
 ROUTES = {
   get: {
+    '/' => [TopController, :index],
     '/users' => [UsersController, :index],
     '/users/:id' => [UsersController, :show]
   }
