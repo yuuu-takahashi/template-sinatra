@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'yaml'
-require 'sequel'
 require_with_alias('@/lib/database_client')
 
 module DBSetup

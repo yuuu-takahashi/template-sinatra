@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rake'
-
 require_relative 'config/environment'
 
 require_with_alias('@/db/setup')

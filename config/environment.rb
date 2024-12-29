@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'dotenv'
-
 APP_ROOT = File.expand_path('..', __dir__)
 
 env_file = File.join(APP_ROOT, ".env.#{ENV.fetch('APP_ENV', 'development')}")
