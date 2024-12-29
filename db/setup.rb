@@ -2,6 +2,7 @@
 
 require 'yaml'
 require_with_alias('@/lib/database_client')
+require_with_alias('@/db/utilities')
 
 module DBSetup
   def self.create_database
@@ -52,6 +53,14 @@ module DBSetup
       puts 'users data inserted successfully!'
     else
       puts 'users data already exists. No data inserted.'
+    end
+  end
+
+  def self.generate_schema
+    File.open('db/schema.rb', 'w') do |file|
+      write_schema_header(file)
+      write_tables_schema(client, file)
+      file.puts 'end'
     end
   end
 end
