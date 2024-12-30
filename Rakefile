@@ -1,7 +1,4 @@
-require 'rake'
-require_relative 'config/environment'
-
-require_with_alias('@/db/setup')
+require_relative 'index'
 
 namespace :db do
   task :create do

@@ -1,9 +1,10 @@
 require 'sinatra'
 require 'sinatra/reloader' if development?
 require 'sequel'
-require 'sinatra/base'
 require 'sequel/extensions/migration'
 require 'yaml'
+require 'json'
+require 'rake'
 
 require_relative 'config/environment'
 
