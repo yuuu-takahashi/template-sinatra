@@ -1,5 +1,3 @@
-require 'sequel'
-
 module DatabaseClient
   def self.connect_without_database
     Sequel.connect(

@@ -1,5 +1,3 @@
-require 'sinatra/base'
-
 class UsersController < Sinatra::Base
   before do
     content_type :json

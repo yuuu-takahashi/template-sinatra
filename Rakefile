@@ -14,7 +14,6 @@ namespace :db do
 
   task :migrate do
     DBSetup.create_table
-    DBSetup.generate_schema
   end
 
   task :seed do
