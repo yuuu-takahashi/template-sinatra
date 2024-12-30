@@ -2,17 +2,25 @@ ENV['APP_ENV'] = 'test'
 
 require 'factory_bot'
 require 'rack/test'
-require 'rake'
+require 'faker'
 
 require_relative '../index'
 
 Rake.application.init
 Rake.application.load_rakefile
 
-Dir[File.join(__dir__, 'support', '**', '*.rb')].sort.each { |file| require file }
-
 FactoryBot.definition_file_paths = %w[./spec/factories]
 FactoryBot.find_definitions
+FactoryBot.define do
+  to_create do |instance|
+    client = DatabaseClient.connect
+    query = "INSERT INTO users (name, email) VALUES ('#{instance.name}', '#{instance.email}')"
+    client.run(query)
+
+    instance.id = client[:users].select(Sequel.function(:LAST_INSERT_ID).as(:id)).first[:id]
+    client.disconnect
+  end
+end
 
 RSpec.configure do |config|
   config.before(:suite) do

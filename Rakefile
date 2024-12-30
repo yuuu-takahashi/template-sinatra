@@ -1,7 +1,4 @@
-require 'rake'
-require_relative 'config/environment'
-
-require_with_alias('@/db/setup')
+require_relative 'index'
 
 namespace :db do
   task :create do
@@ -14,7 +11,6 @@ namespace :db do
 
   task :migrate do
     DBSetup.create_table
-    DBSetup.generate_schema
   end
 
   task :seed do

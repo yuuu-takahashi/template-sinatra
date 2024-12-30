@@ -32,7 +32,6 @@ tree -I 'vendor|node_modules'
 │   ├── factories                # テストデータ生成用FactoryBot設定
 │   ├── models                   # モデルのテスト
 │   ├── spec_helper.rb           # RSpecの設定
-│   └── support                  # テストサポートファイル
 └── yarn.lock                    # 依存関係のバージョン
 ```
 
