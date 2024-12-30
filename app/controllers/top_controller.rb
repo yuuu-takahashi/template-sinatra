@@ -1,6 +1,5 @@
 class TopController < Sinatra::Base
-  def self.index(params = {})
-    puts params
+  def self.index(_params = {})
     'Hello, world!'
   end
 end

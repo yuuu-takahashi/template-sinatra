@@ -3,8 +3,7 @@ class UsersController < Sinatra::Base
     content_type :json
   end
 
-  def self.index(params = {})
-    puts params
+  def self.index(_params = {})
     users = User.all
     users.map(&:to_h).to_json
   end
