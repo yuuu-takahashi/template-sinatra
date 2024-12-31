@@ -11,4 +11,9 @@ RSpec.describe 'users_controller' do
     get "/users/#{user.id}"
     expect(last_response).to be_ok
   end
+
+  it 'user not found' do
+    get '/users/99999'
+    expect(last_response).to be_not_found
+  end
 end

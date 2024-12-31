@@ -29,3 +29,7 @@ get '/db_check' do
 rescue StandardError => e
   "Database connection error: #{e.message}"
 end
+
+not_found do
+  erb :not_found
+end
