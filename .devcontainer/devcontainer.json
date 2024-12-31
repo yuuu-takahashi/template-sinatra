@@ -5,7 +5,11 @@
   "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
-      "extensions": ["esbenp.prettier-vscode", "Shopify.ruby-extensions-pack"],
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "Shopify.ruby-extensions-pack",
+        "aliariff.vscode-erb-beautify"
+      ],
       "settings": {
         "editor.tabSize": 2,
         "files.trimTrailingWhitespace": true,
@@ -20,7 +24,11 @@
         },
         "ruby.lint": {
           "rubocop": true
-        }
+        },
+        "[erb]": {
+          "editor.defaultFormatter": "aliariff.vscode-erb-beautify"
+        },
+        "vscode-erb-beautify.useBundler": true
       }
     }
   }

@@ -9,7 +9,9 @@ gem 'sequel', '~> 5.47'
 gem 'sinatra', '~> 4.1'
 
 group :development, :test do
+  gem 'erb_lint'
   gem 'factory_bot', '~> 6.2'
+  gem 'htmlbeautifier'
   gem 'rack-test'
   gem 'rspec', '~> 3.12'
   gem 'rubocop'

@@ -16,3 +16,12 @@ end
 
 set :bind, '0.0.0.0'
 set :port, 4567
+set :views, File.expand_path('./app/views', __dir__)
+set :public_folder, File.expand_path('./app/public', __dir__)
+
+get '/db_check' do
+  DatabaseClient.connect
+  'Database connection is active'
+rescue StandardError => e
+  "Database connection error: #{e.message}"
+end

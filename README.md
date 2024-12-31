@@ -104,7 +104,10 @@ bundle exec rspec
 - コードの静的解析と修正
 
 ```bash
+yarn format
 bundle exec rubocop -A
+bundle exec erb_lint app/views/**/*.erb
+find app/views -name "*.erb" -exec bundle exec htmlbeautifier {} \;
 ```
 
 ## トラブルシューティング
