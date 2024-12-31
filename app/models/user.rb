@@ -20,7 +20,10 @@ class User
   def self.find(id)
     with_database_client do |client|
       query = 'SELECT * FROM users WHERE id = ? LIMIT 1'
-      client.fetch(query, id).first
+      user = client.fetch(query, id).first
+      raise Sinatra::NotFound, 'User not found' unless user
+
+      user
     end
   end
 
