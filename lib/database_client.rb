@@ -10,7 +10,7 @@ module DatabaseClient
   def connect_to_database(database: nil)
     Sequel.connect(
       adapter: 'mysql2',
-      host: ENV.fetch('DATABASE_HOST', 'db'),
+      host: ENV['DATABASE_HOST'],
       user: ENV['DATABASE_USER'],
       password: ENV['DATABASE_PASSWORD'],
       database: database
