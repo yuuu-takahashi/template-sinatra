@@ -49,4 +49,29 @@ module DBSetup
       puts 'users data already exists. No data inserted.'
     end
   end
+
+  def self.generate_migrate_file(name)
+    Sequel.extension :migration
+    migration_file = File.join('db/migrate', "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{name}.rb")
+    File.open(migration_file, 'w') do |file|
+      file.write(migration_template)
+    end
+    puts "Migration file '#{migration_file}' created successfully!"
+  end
+
+  def self.migration_template
+    <<~MIGRATION
+      Sequel.migration do
+        change do
+          create_table(:users) do
+            primary_key :id
+            String :name, null: false
+            String :email, null: false, unique: true
+            DateTime :created_at, default: Sequel::CURRENT_TIMESTAMP
+            DateTime :updated_at, default: Sequel::CURRENT_TIMESTAMP
+          end
+        end
+      end
+    MIGRATION
+  end
 end
