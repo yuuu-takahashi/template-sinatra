@@ -1,5 +1,5 @@
 class TopController < Sinatra::Base
-  def self.index(_params = {})
-    'Hello, world!'
+  def self.index(app, _params = {})
+    app.erb :top
   end
 end
