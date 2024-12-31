@@ -42,5 +42,11 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: lint
+      - name: rubocop
         run: bundle exec rubocop -A
+
+      - name: erb_lint
+        run: bundle exec erb_lint app/views/**/*.erb
+
+      - name: htmlbeautifier
+        run: find app/views -name "*.erb" -exec bundle exec htmlbeautifier {} \;

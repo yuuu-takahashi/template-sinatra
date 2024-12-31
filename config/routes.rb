@@ -9,7 +9,7 @@ ROUTES = {
 ROUTES.each do |http_method, paths|
   paths.each do |path, (controller, action)|
     send(http_method, path) do
-      controller.send(action, params)
+      controller.send(action, self, params)
     end
   end
 end
