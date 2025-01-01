@@ -2,6 +2,8 @@ require 'factory_bot'
 require 'rack/test'
 require 'faker'
 
+ENV['RACK_ENV'] = 'test'
+
 require_relative '../index'
 
 Rake.application.init
