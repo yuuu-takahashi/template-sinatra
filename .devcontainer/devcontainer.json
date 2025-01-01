@@ -1,5 +1,5 @@
 {
-  "name": "ruby-web",
+  "name": "template-sinatra",
   "dockerComposeFile": "./docker-compose.yml",
   "service": "web",
   "workspaceFolder": "/workspace",
