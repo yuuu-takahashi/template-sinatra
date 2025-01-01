@@ -2,7 +2,7 @@ require 'factory_bot'
 require 'rack/test'
 require 'faker'
 
-ENV['RACK_ENV'] = 'test'
+ENV['APP_ENV'] = 'test'
 
 require_relative '../index'
 
