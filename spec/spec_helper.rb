@@ -1,5 +1,3 @@
-ENV['APP_ENV'] = 'test'
-
 require 'factory_bot'
 require 'rack/test'
 require 'faker'
