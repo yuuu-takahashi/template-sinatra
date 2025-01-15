@@ -5,11 +5,11 @@ class UsersController < Sinatra::Base
 
   def self.index(_app, _params = {})
     users = User.all
-    users.map(&:to_h).to_json
+    users.map(&:attributes).to_json
   end
 
   def self.show(_app, params = {})
     user = User.find(params[:id])
-    user.to_h.to_json
+    user.attributes.to_json
   end
 end
