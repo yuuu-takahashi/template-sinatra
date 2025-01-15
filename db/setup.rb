@@ -1,6 +1,6 @@
 module DBSetup
   def self.create_database
-    client = DatabaseClient.connect_without_database
+    client = MySQLClient.connect_without_database
     database_name = ENV['DATABASE_NAME']
     databases = client.fetch("SHOW DATABASES LIKE '#{database_name}'").all
     if databases.any?
@@ -12,7 +12,7 @@ module DBSetup
   end
 
   def self.client
-    @client ||= DatabaseClient.connect
+    @client ||= MySQLClient.connect
   end
 
   def self.drop_database
