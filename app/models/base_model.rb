@@ -1,4 +1,6 @@
 class BaseModel
+  READONKY_COLUMNS = %i[created_at id updated_at].freeze
+
   attr_reader :attributes
 
   def initialize(params = {})
@@ -43,8 +45,12 @@ class BaseModel
   end
 
   def self.all
-    MySQLClient.with_table(table_name) do |table|
-      table.all.map { |record| instantiate_from_record(record) }
+    Enumerator.new do |yielder|
+      MySQLClient.with_table(table_name) do |table|
+        table.each do |record|
+          yielder << instantiate_from_record(record)
+        end
+      end
     end
   end
 
@@ -67,13 +73,11 @@ class BaseModel
   private
 
   def define_columns
-    readonly_columns = %i[created_at id updated_at]
-
     MySQLClient.with_database do |client|
       client.schema(self.class.table_name).each do |col|
         column = col[0]
         define_getter(column)
-        define_setter(column, readonly_columns)
+        define_setter(column)
       end
     end
   end
@@ -82,8 +86,8 @@ class BaseModel
     self.class.send(:define_method, column) { @attributes[column] }
   end
 
-  def define_setter(column, readonly_columns)
-    return if readonly_columns.include?(column)
+  def define_setter(column)
+    return if READONKY_COLUMNS.include?(column)
 
     self.class.send(:define_method, "#{column}=") { |value| @attributes[column] = value }
   end

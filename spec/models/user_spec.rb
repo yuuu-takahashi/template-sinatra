@@ -50,9 +50,28 @@ RSpec.describe User do
       expect(User.find(user.id).id).to eq(user.id)
     end
 
-    it 'returns all users' do
-      create_list(:user, 3)
-      expect(User.all.size).to eq(3)
+    describe 'returns all users' do
+      before do
+        create_list(:user, 3)
+      end
+
+      it 'does not access the database when initializing the enumerator' do
+        expect(MySQLClient).not_to receive(:with_table)
+
+        enumerator = User.all
+        expect(enumerator).to be_an(Enumerator)
+      end
+
+      it 'accesses the database only when the enumerator is executed' do
+        allow(MySQLClient).to receive(:with_table).and_call_original
+
+        enumerator = User.all
+
+        expect(MySQLClient).not_to have_received(:with_table)
+
+        enumerator.each { |_| }
+        expect(MySQLClient).to have_received(:with_table).once
+      end
     end
 
     it 'returns correct table name' do
