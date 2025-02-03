@@ -132,7 +132,7 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.4.0)
-    sequel (5.88.0)
+    sequel (5.89.0)
       bigdecimal
     sinatra (4.1.1)
       logger (>= 1.6.0)
@@ -174,7 +174,7 @@ DEPENDENCIES
   rspec (~> 3.12)
   rubocop
   ruby-lsp
-  sequel (~> 5.88)
+  sequel (~> 5.89)
   sinatra (~> 4.1)
   sinatra-contrib
 
